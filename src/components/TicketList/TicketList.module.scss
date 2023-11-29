@@ -1,0 +1,64 @@
+.ticketContainer{
+    margin-bottom: 20px;
+    height: 184px;
+    background-color: #FFFFFF;
+    fill: #FFF;
+    filter: drop-shadow(0px 2px 8px rgba(0, 0, 0, 0.10));
+    border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -ms-border-radius: 5px;
+    -o-border-radius: 5px;
+    padding-bottom: 20px;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+.price{
+    color: #2196F3;
+    font-family: Open Sans;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 24px;
+}
+.priceLogoWrapper{
+    display: flex;
+    justify-content: space-between;
+    margin: 26px 20px 26px 20px; /* Верх 0, справа 20px, низ 0, слева 20px */
+
+
+}
+.logo{
+    margin-top: -6px;
+}
+.timeInfo{
+    display: flex;
+    flex-direction: column;
+}
+.contentTransferFirst{
+    display: flex;
+    justify-content: space-between;
+}
+.contentTransferSecond{
+    margin-top: 10px;
+    display: flex;
+    justify-content: space-between;
+}
+.citys{
+    color: #A0B0B9;
+    font-family: Open Sans;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 18px; /* 150% */
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+}
+.flightTime{
+    color: #4A4A4A;
+    font-family: Open Sans;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 21px; /* 150% */
+}

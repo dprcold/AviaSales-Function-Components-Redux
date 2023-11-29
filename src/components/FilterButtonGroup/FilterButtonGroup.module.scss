@@ -1,0 +1,33 @@
+.container{
+    display: flex;
+    justify-content: space-between;
+    width: 504px;
+    height: 50px;
+    background-color: #FFF;
+    border-radius: 5px;
+    overflow: hidden;
+    margin-bottom: 20px;
+}
+.button{
+    width: 168px;
+    cursor: pointer;
+    fill: var(--primary-colors-white, #FFF);
+    stroke-width: 1px;
+    stroke: var(--secondary-colors-border, #DFE5EC);
+    color: #4A4A4A;
+    text-align: center;
+    font-family: Open Sans;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 20px;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    background-color: #FFF;
+    border: none;
+}
+   
+.button:hover{
+    background-color: #2196F3;
+    color: #FFF;
+}

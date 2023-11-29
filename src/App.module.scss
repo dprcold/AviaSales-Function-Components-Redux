@@ -1,0 +1,29 @@
+.appWrapper{
+  width: 960px;
+  margin: 0 auto;
+}
+.logoWrapper {
+    width: 960px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+    
+  }
+.logo{
+    margin-top: 50px;
+    width: 60px;
+    height: 60px;
+    background: none;
+    flex-shrink: 0;
+}
+.contentWrapper{
+  margin-top: 50px;
+  display: flex;
+}
+.contentTicketsButtonsWrapper{
+  margin-left: 20px;
+  display: flex;
+  flex-direction: column;
+  width: 502px;
+}

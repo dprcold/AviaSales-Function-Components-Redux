@@ -1,0 +1,41 @@
+.container{
+    width: 232px;
+    height: 252px;
+    flex-shrink: 0;
+    border-radius: 5px;
+    background: #FFF;
+    box-shadow: 0px 2px 8px 0px rgba(0, 0, 0, 0.10);
+}
+.title{
+    padding-top: 20px;
+    padding-left: 20px;
+    padding-bottom: 10px;
+    color: #4A4A4A;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 12px;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+}
+.checkboxElem{
+    padding-left: 20px;
+    display: flex;
+    align-items: center;
+    height: 40px;
+    cursor: pointer;
+    
+}
+.checkboxElem:hover{
+    background: #F1FCFF;
+}
+.checkboxTittle{
+    color: #4A4A4A;
+    font-family: Open Sans;
+    font-size: 13px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 20px;
+    margin-left: 10px;
+}
+
