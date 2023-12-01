@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux';
 
 import customCheckBox from '../assets/Checkbox.png';
 import checkedCustomCheckBox from '../assets/CheckboxChecked.png';
-import { ActionTypes } from '../../redux/actions';
+import { ActionTypes } from '../../redux/actions/actions';
 import { useTypeSelector } from '../../hooks/useTypeSelector';
 
 import style from './FilterCheckboxGroup.module.scss';

@@ -1,6 +1,6 @@
 .ticketContainer{
-    margin-bottom: 20px;
-    height: 184px;
+    display: grid;
+    grid-row-gap: 10px;
     background-color: #FFFFFF;
     fill: #FFF;
     filter: drop-shadow(0px 2px 8px rgba(0, 0, 0, 0.10));
@@ -9,9 +9,8 @@
     -moz-border-radius: 5px;
     -ms-border-radius: 5px;
     -o-border-radius: 5px;
-    padding-bottom: 20px;
-    padding-left: 20px;
-    padding-right: 20px;
+    padding: 20px;
+    margin-bottom: 20px;
 }
 .price{
     color: #2196F3;
@@ -22,9 +21,9 @@
     line-height: 24px;
 }
 .priceLogoWrapper{
-    display: flex;
-    justify-content: space-between;
-    margin: 26px 20px 26px 20px; /* Верх 0, справа 20px, низ 0, слева 20px */
+    display: grid;
+    grid-template-columns: 1fr .5fr;
+    margin-bottom: 8px;
 
 
 }
@@ -36,13 +35,13 @@
     flex-direction: column;
 }
 .contentTransferFirst{
-    display: flex;
-    justify-content: space-between;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    margin-top: 8px;
 }
 .contentTransferSecond{
-    margin-top: 10px;
-    display: flex;
-    justify-content: space-between;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
 }
 .citys{
     color: #A0B0B9;

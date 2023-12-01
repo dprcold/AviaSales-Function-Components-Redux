@@ -7,6 +7,7 @@ import style from './TicketList.module.scss';
 export const TicketList: React.FC = () => {
   return (
     <>
+
       <div className={style.ticketContainer}>
         <div className={style.priceLogoWrapper}>
           <span className={style.price}>13 400 р</span>

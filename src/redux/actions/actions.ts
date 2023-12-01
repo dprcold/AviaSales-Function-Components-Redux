@@ -8,3 +8,7 @@ export enum ActionTypes {
   SET_CHECKBOX_NAME_ALL_TO_TRUE = 'SET_CHECKBOX_NAME_ALL_TO_TRUE',
   SET_CHECKBOX_NAME_ALL_TO_FALSE = 'SET_CHECKBOX_NAME_ALL_TO_FALSE',
 }
+
+export enum fetchAtcionTypes {
+  
+}

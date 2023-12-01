@@ -1,5 +1,4 @@
-import { TRUE } from 'sass';
-import { ActionTypes } from './actions';
+import { ActionTypes } from '../actions/actions';
 
 interface uiState {
   checkboxAll: boolean;
