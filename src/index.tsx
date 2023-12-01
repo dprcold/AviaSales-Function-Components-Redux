@@ -1,9 +1,14 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-
+import { Provider } from 'react-redux';
+import {store} from '../src/redux/store'
 import './index.module.scss';
 import { App } from './App';
 
 const container: any = document.getElementById('root');
 const root = ReactDOM.createRoot(container);
-root.render(<App />);
+root.render(
+    <Provider store={store}>
+      <App />
+    </Provider>
+  );

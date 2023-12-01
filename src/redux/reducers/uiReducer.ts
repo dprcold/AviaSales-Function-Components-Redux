@@ -6,6 +6,7 @@ interface uiState {
   checkboxOneTransfers: boolean;
   checkboxTwoTransfers: boolean;
   checkboxThreeTransfers: boolean;
+  footerButtonCount: number;
 }
 
 const initialState = {
@@ -14,6 +15,7 @@ const initialState = {
   checkboxOneTransfers: false,
   checkboxTwoTransfers: false,
   checkboxThreeTransfers: false,
+  footerButtonCount: 5,
 };
 
 export const uiReducer = (state: uiState = initialState, action: any) => {
@@ -65,6 +67,11 @@ export const uiReducer = (state: uiState = initialState, action: any) => {
             checkboxOneTransfers: false,
             checkboxTwoTransfers: false,
             checkboxThreeTransfers: false,
+          }
+        case ActionTypes.COUNTER_FOOTER_BUTTON:
+          return {
+            ...state,
+            footerButtonCount: state.footerButtonCount + 5,
           }
     default:
       return state;

@@ -24,8 +24,8 @@ export const FilterCheckboxGroup: React.FC = () => {
     { id: CheckboxIds.All, title: 'Все', state: uiState.checkboxAll },
     { id: CheckboxIds.NoTransfers, title: 'Без пересадок', state: uiState.checkboxNoTransfers },
     { id: CheckboxIds.OneTransfer, title: '1 пересадка', state: uiState.checkboxOneTransfers },
-    { id: CheckboxIds.TwoTransfers, title: '2 пересадка', state: uiState.checkboxTwoTransfers },
-    { id: CheckboxIds.ThreeTransfers, title: '3 пересадка', state: uiState.checkboxThreeTransfers },
+    { id: CheckboxIds.TwoTransfers, title: '2 пересадки', state: uiState.checkboxTwoTransfers },
+    { id: CheckboxIds.ThreeTransfers, title: '3 пересадки', state: uiState.checkboxThreeTransfers },
   ];
   const changeCheckbox = (checkboxId: number) => {
    if(checkboxId === CheckboxIds.All){
