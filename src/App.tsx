@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 
 import { ChakraWrapper } from './ChakraWrapper';
-import { Alert, AlertIcon, AlertTitle, AlertDescription } from '@chakra-ui/react';
+import { Alert, AlertIcon, AlertDescription } from '@chakra-ui/react';
 import Logo from '../src/components/assets/Logo.png';
 
 import { FilterCheckboxGroup } from './components/FilterCheckboxGroup/FilterCheckboxGroup';
@@ -16,7 +16,7 @@ import { useTypeSelector } from './hooks/useTypeSelector';
 
 export const App: React.FC = () => {
   const dispatch = useDispatch()
-  const {sessionId, loading } = useTypeSelector(state => state.fetch)
+  const {sessionId, loading, showErrorModal } = useTypeSelector(state => state.fetch)
   const {buttonMoreTickets, showAlertModal} = useTypeSelector(state => state.ui)
 
 
@@ -42,13 +42,19 @@ export const App: React.FC = () => {
           <div className={style.contentTicketsButtonsWrapper}>
             <SortButtonGroup />
             {showAlertModal ? (
-            <Alert>
+            <Alert status='info'>
               <AlertIcon />
-              <AlertTitle>:(</AlertTitle>
               <AlertDescription>Не удалось найти билет, выберите параметры поиска</AlertDescription>
             </Alert>
                   ) : null}
+            {showErrorModal ? (
+            <Alert status='warning'> 
+              <AlertIcon />
+              <AlertDescription>Произошла ошибка при получении билетов</AlertDescription>
+            </Alert>
+                  ) : null}
             {loading ? <Loader /> : null}
+            
             <TicketList />
             {buttonMoreTickets ? <ShowMoreTicket /> : null}
           </div>

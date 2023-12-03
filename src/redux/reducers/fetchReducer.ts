@@ -5,6 +5,7 @@ interface ticketState {
     tickets: any[];
     loading: boolean;
     error: null | string;
+    showErrorModal: boolean;
 }
 
 const initialState = {
@@ -12,6 +13,7 @@ const initialState = {
     tickets: [],
     loading: false,
     error: null,
+    showErrorModal: false,
 }
 
 export const fetchReducer = (state: ticketState = initialState, action: any) => {
@@ -32,6 +34,7 @@ export const fetchReducer = (state: ticketState = initialState, action: any) => 
           loading: false,
           tickets: action.payload,
           error: null,
+          showErrorModal: false,
         };
       case fetchAtcionTypes.FETCH_TICKETS_ERROR:
         return {
@@ -39,6 +42,7 @@ export const fetchReducer = (state: ticketState = initialState, action: any) => 
           loading: false,
           tickets: [],
           error: action.payload,
+          showErrorModal: true,
         };
       default:
         return state;
