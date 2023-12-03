@@ -20,10 +20,12 @@ export const App: React.FC = () => {
 
   useEffect(() => {
     dispatch(getSessionID() as any);
+    console.log('айди получено');
   }, []);
   useEffect(() => {
     if (sessionId) {
       dispatch(getTickets(sessionId) as any);
+      console.log('билеты получены');
     }
   }, [sessionId]);
 

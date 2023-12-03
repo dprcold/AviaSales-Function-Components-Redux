@@ -1,12 +1,5 @@
 import { fetchAtcionTypes } from '../actions/actions';
-
-interface ticketState {
-  sessionId: string;
-  tickets: any[];
-  loading: boolean;
-  error: null | string;
-  showErrorModal: boolean;
-}
+import { ticketState, uiAction } from '../../types/types';
 
 const initialState = {
   sessionId: '',
@@ -16,7 +9,7 @@ const initialState = {
   showErrorModal: false,
 };
 
-export const fetchReducer = (state: ticketState = initialState, action: any) => {
+export const fetchReducer = (state: ticketState = initialState, action: uiAction) => {
   switch (action.type) {
     case fetchAtcionTypes.FETCH_TICKETS_SEARCH_ID:
       return {

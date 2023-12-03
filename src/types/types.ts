@@ -1,3 +1,27 @@
+export interface uiState {
+  checkboxAll: boolean;
+  checkboxNoTransfers: boolean;
+  checkboxOneTransfers: boolean;
+  checkboxTwoTransfers: boolean;
+  checkboxThreeTransfers: boolean;
+  footerButtonCount: number;
+  buttonMoreTickets: boolean;
+  showAlertModal: boolean;
+  sortButtonCheap: boolean;
+  sortButtonFastest: boolean;
+  sortButtonOptimal: boolean;
+}
+export interface uiAction {
+  type: string;
+  payload?: any;
+}
+export interface ticketState {
+  sessionId: string;
+  tickets: any[];
+  loading: boolean;
+  error: null | string;
+  showErrorModal: boolean;
+}
 export interface Ticket {
   // Цена в рублях
   price: number;

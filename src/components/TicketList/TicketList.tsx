@@ -44,8 +44,8 @@ export const TicketList: React.FC = () => {
 
   useEffect(() => {
     if (tickets) {
-      const filtered = tickets.filter((ticket: any) => {
-        const stopsCount = ticket.segments.reduce((acc: number, segment: any) => acc + segment.stops.length, 0);
+      const filtered = tickets.filter((ticket: Ticket) => {
+        const stopsCount = ticket.segments.reduce((acc: number, segment) => acc + segment.stops.length, 0);
 
         return (
           checkboxAll ||
@@ -57,16 +57,9 @@ export const TicketList: React.FC = () => {
       });
 
       setFilteredTickets(filtered);
+      console.log('билеты отфильтровались');
     }
   }, [tickets, checkboxAll, checkboxNoTransfers, checkboxOneTransfers, checkboxTwoTransfers, checkboxThreeTransfers]);
-
-  useEffect(() => {
-    if (filteredTickets && filteredTickets.length > 5) {
-      dispatch({ type: ActionTypes.SHOW_MORE_TICKETS_BUTTON });
-    } else {
-      dispatch({ type: ActionTypes.HIDE_MORE_TICKETS_BUTTON });
-    }
-  }, [filteredTickets]);
 
   useEffect(() => {
     if (filteredTickets) {
@@ -96,16 +89,27 @@ export const TicketList: React.FC = () => {
           }
         });
       }
-
+      console.log('билеты отсортировались');
       setFilteredTickets(sortedTickets);
     }
-  }, [sortButtonCheap, sortButtonFastest, sortButtonOptimal, filteredTickets]);
+  }, [sortButtonCheap, sortButtonFastest, sortButtonOptimal]);
 
   useEffect(() => {
     if (filteredTickets && !filteredTickets.length && !checkboxAll) {
       dispatch({ type: ActionTypes.SHOW_ALERT_MODAL });
+      console.log('SHOW_ALERT_MODAL');
     } else {
       dispatch({ type: ActionTypes.HIDE_ALERT_MODAL });
+      console.log('HIDE_ALERT_MODAL');
+    }
+  }, [filteredTickets, checkboxAll]);
+  useEffect(() => {
+    if (filteredTickets.length === 0) {
+      dispatch({ type: ActionTypes.HIDE_MORE_TICKETS_BUTTON });
+      console.log('HIDE_MORE_TICKETS_BUTTON');
+    } else {
+      dispatch({ type: ActionTypes.SHOW_MORE_TICKETS_BUTTON });
+      console.log('SHOW_MORE_TICKETS_BUTTON');
     }
   }, [filteredTickets]);
 

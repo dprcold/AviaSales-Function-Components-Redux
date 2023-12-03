@@ -1,4 +1,4 @@
-import { ThunkAction, ThunkDispatch } from 'redux-thunk';
+import { ThunkAction } from 'redux-thunk';
 import axios from 'axios';
 
 import { fetchAtcionTypes } from '../actions/actions';
@@ -8,8 +8,7 @@ const GET_SESSION_ID_URL = 'https://aviasales-test-api.kata.academy/search';
 const GET_TICKETS_URL = 'https://aviasales-test-api.kata.academy/tickets?searchId=';
 
 export const getSessionID = (): ThunkAction<void, RootState, unknown, any> => {
-  //@ts-ignore
-  return async (dispatch: ThunkDispatch<RootState, void, any, any>) => {
+  return async (dispatch) => {
     try {
       dispatch({ type: fetchAtcionTypes.FETCH_TICKETS });
       const response = await axios.get(GET_SESSION_ID_URL);
@@ -21,8 +20,7 @@ export const getSessionID = (): ThunkAction<void, RootState, unknown, any> => {
   };
 };
 export const getTickets = (sessionId: string): ThunkAction<void, RootState, unknown, any> => {
-  //@ts-ignore
-  return async (dispatch: ThunkDispatch<RootState, void, any, any>) => {
+  return async (dispatch) => {
     try {
       dispatch({ type: fetchAtcionTypes.FETCH_TICKETS });
       const response = await axios.get(`${GET_TICKETS_URL}${sessionId}`);

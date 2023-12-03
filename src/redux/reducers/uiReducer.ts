@@ -1,18 +1,5 @@
 import { ActionTypes } from '../actions/actions';
-
-interface uiState {
-  checkboxAll: boolean;
-  checkboxNoTransfers: boolean;
-  checkboxOneTransfers: boolean;
-  checkboxTwoTransfers: boolean;
-  checkboxThreeTransfers: boolean;
-  footerButtonCount: number;
-  buttonMoreTickets: boolean;
-  showAlertModal: boolean;
-  sortButtonCheap: boolean;
-  sortButtonFastest: boolean;
-  sortButtonOptimal: boolean;
-}
+import { uiState, uiAction } from '../../types/types';
 
 const initialState = {
   checkboxAll: true,
@@ -28,7 +15,7 @@ const initialState = {
   sortButtonOptimal: false,
 };
 
-export const uiReducer = (state: uiState = initialState, action: any) => {
+export const uiReducer = (state: uiState = initialState, action: uiAction) => {
   switch (action.type) {
     case ActionTypes.SET_CHECKBOX_NAME_ALL:
       return {
