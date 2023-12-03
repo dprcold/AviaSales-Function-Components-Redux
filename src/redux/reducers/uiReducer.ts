@@ -9,6 +9,10 @@ interface uiState {
   footerButtonCount: number;
   buttonMoreTickets: boolean;
   showAlertModal: boolean;
+  sortButtonCheap: boolean;
+  sortButtonFastest: boolean;
+  sortButtonOptimal: boolean;
+
 }
 
 const initialState = {
@@ -20,6 +24,9 @@ const initialState = {
   footerButtonCount: 5,
   buttonMoreTickets: false,
   showAlertModal: false,
+  sortButtonCheap: false,
+  sortButtonFastest: false,
+  sortButtonOptimal: false,
 };
 
 export const uiReducer = (state: uiState = initialState, action: any) => {
@@ -97,6 +104,29 @@ export const uiReducer = (state: uiState = initialState, action: any) => {
                   ...state,
                   showAlertModal: false,
                 }
+                case ActionTypes.SET_SORT_BUTTON_CHEAP:
+                  return {
+                    ...state,
+                    sortButtonCheap: true,
+                    sortButtonFastest: false,
+                    sortButtonOptimal: false,
+                  }
+                  case ActionTypes.SET_SORT_BUTTON_FASTEST:
+                    return {
+                      ...state,
+                      sortButtonFastest: true,
+                      sortButtonCheap: false,
+                      sortButtonOptimal: false,
+
+                    }
+                    case ActionTypes.SET_SORT_BUTTON_OPTIMAL:
+                      return {
+                        ...state,
+                        sortButtonOptimal: true,
+                        sortButtonFastest: false,
+                        sortButtonCheap: false,
+
+                      }
     default:
       return state;
   }

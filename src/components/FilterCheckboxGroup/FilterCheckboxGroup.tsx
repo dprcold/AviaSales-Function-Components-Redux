@@ -16,9 +16,8 @@ enum CheckboxIds {
   ThreeTransfers = 5,
 }
 
-
 export const FilterCheckboxGroup: React.FC = () => {
-  const uiState = useTypeSelector((state) => state.ui);
+  const uiState = useTypeSelector(state => state.ui);
   const dispatch = useDispatch();
   const checkboxes = [
     { id: CheckboxIds.All, title: 'Все', state: uiState.checkboxAll },

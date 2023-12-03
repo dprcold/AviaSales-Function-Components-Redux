@@ -30,7 +30,7 @@ const formatStopsWord = (stopsCount: number): string => {
 
 export const TicketList: React.FC = () => {
   const [filteredTickets, setFilteredTickets] = useState<Ticket[]>([])
-  const { footerButtonCount, checkboxAll, checkboxNoTransfers, checkboxOneTransfers, checkboxTwoTransfers, checkboxThreeTransfers } = useTypeSelector(state => state.ui)
+  const { footerButtonCount, checkboxAll, checkboxNoTransfers, checkboxOneTransfers, checkboxTwoTransfers, checkboxThreeTransfers, sortButtonCheap, sortButtonFastest, sortButtonOptimal  } = useTypeSelector(state => state.ui)
   const { tickets } = useTypeSelector(state => state.fetch);
   const dispatch = useDispatch()
 
@@ -62,6 +62,40 @@ export const TicketList: React.FC = () => {
       dispatch({ type: ActionTypes.HIDE_MORE_TICKETS_BUTTON });
     }
   }, [filteredTickets]);
+
+  useEffect(() => {
+    if (filteredTickets) {
+      const sortedTickets = [...filteredTickets];
+  
+      if (sortButtonCheap) {
+        console.log('click дешевый');
+        sortedTickets.sort((a, b) => a.price - b.price);
+      }
+      if (sortButtonFastest) {
+        console.log('click быстрый');
+        sortedTickets.sort((a, b) => {
+          const fastestSegmentA = Math.min(...a.segments.map(segment => segment.duration));
+          const fastestSegmentB = Math.min(...b.segments.map(segment => segment.duration));
+        
+          return fastestSegmentA - fastestSegmentB;
+        });
+      }
+      if (sortButtonOptimal) {
+        sortedTickets.sort((a, b) => {
+          const sumA = a.segments.reduce((acc, cur) => acc+=cur.duration,0) + a.price
+          const sumB =  b.segments.reduce((acc, cur) => acc+=cur.duration,0) + b.price
+          if(sumA > sumB){
+            return 1
+          } else {
+            return -1
+          }
+        })
+      }
+
+      setFilteredTickets(sortedTickets);
+    }
+  }, [sortButtonCheap, sortButtonFastest, sortButtonOptimal, filteredTickets]);
+  
   useEffect(() => {
     if(filteredTickets && !filteredTickets.length && !checkboxAll){
       dispatch({ type: ActionTypes.SHOW_ALERT_MODAL });
