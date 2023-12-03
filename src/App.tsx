@@ -2,8 +2,7 @@ import React, { useEffect } from 'react';
 import { Alert, AlertIcon, AlertDescription } from '@chakra-ui/react';
 import { useDispatch } from 'react-redux';
 
-import Logo from '../src/components/assets/Logo.png';
-
+import Logo from './assets/Logo.png';
 import { ChakraWrapper } from './ChakraWrapper';
 import { FilterCheckboxGroup } from './components/FilterCheckboxGroup/FilterCheckboxGroup';
 import style from './App.module.scss';
