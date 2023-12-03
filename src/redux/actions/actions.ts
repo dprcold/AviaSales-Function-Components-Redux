@@ -24,5 +24,3 @@ export enum fetchAtcionTypes {
   FETCH_TICKETS_ERROR = 'FETCH_TICKETS_ERROR',
   SHOW_ERROR_MODAL = 'SHOW_ERROR_MODAL',
 }
-
-

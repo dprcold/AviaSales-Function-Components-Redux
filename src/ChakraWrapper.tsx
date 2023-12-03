@@ -1,14 +1,14 @@
-import React, { ReactNode } from "react";
-import { ChakraProvider, extendTheme } from "@chakra-ui/react";
+import React, { ReactNode } from 'react';
+import { ChakraProvider, extendTheme } from '@chakra-ui/react';
 
 const theme = extendTheme({
   styles: {
     global: () => ({
       body: {
-        bg: ""
-      }
-    })
-  }
+        bg: '',
+      },
+    }),
+  },
 });
 
 interface ChakraWrapperProps {
@@ -16,8 +16,5 @@ interface ChakraWrapperProps {
 }
 
 export const ChakraWrapper: React.FC<ChakraWrapperProps> = ({ children }) => (
-  <ChakraProvider theme={theme}>
-    {children}
-  </ChakraProvider>
+  <ChakraProvider theme={theme}>{children}</ChakraProvider>
 );
-
