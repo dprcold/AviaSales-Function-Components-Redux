@@ -7,15 +7,19 @@ interface uiState {
   checkboxTwoTransfers: boolean;
   checkboxThreeTransfers: boolean;
   footerButtonCount: number;
+  buttonMoreTickets: boolean;
+  showAlertModal: boolean;
 }
 
 const initialState = {
-  checkboxAll: false,
-  checkboxNoTransfers: false,
-  checkboxOneTransfers: false,
-  checkboxTwoTransfers: false,
-  checkboxThreeTransfers: false,
+  checkboxAll: true,
+  checkboxNoTransfers: true,
+  checkboxOneTransfers: true,
+  checkboxTwoTransfers: true,
+  checkboxThreeTransfers: true,
   footerButtonCount: 5,
+  buttonMoreTickets: false,
+  showAlertModal: false,
 };
 
 export const uiReducer = (state: uiState = initialState, action: any) => {
@@ -73,6 +77,26 @@ export const uiReducer = (state: uiState = initialState, action: any) => {
             ...state,
             footerButtonCount: state.footerButtonCount + 5,
           }
+          case ActionTypes.SHOW_MORE_TICKETS_BUTTON:
+            return {
+              ...state,
+              buttonMoreTickets: true,
+            }
+            case ActionTypes.HIDE_MORE_TICKETS_BUTTON:
+            return {
+              ...state,
+              buttonMoreTickets: false,
+            }
+            case ActionTypes.SHOW_ALERT_MODAL:
+              return {
+                ...state,
+                showAlertModal: true,
+              }
+              case ActionTypes.HIDE_ALERT_MODAL:
+                return {
+                  ...state,
+                  showAlertModal: false,
+                }
     default:
       return state;
   }

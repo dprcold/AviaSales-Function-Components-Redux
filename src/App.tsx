@@ -1,20 +1,23 @@
 import React, { useEffect } from 'react';
-import { Provider } from 'react-redux';
+
 import { ChakraWrapper } from './ChakraWrapper';
+import { Alert, AlertIcon, AlertTitle, AlertDescription } from '@chakra-ui/react';
 import Logo from '../src/components/assets/Logo.png';
-import { store } from './redux/store';
+
 import { FilterCheckboxGroup } from './components/FilterCheckboxGroup/FilterCheckboxGroup';
 import style from './App.module.scss';
-import { FilterButtonGroup } from './components/FilterButtonGroup/FilterButtonGroup';
+import { SortButtonGroup } from './components/FilterButtonGroup/SortButtonGroup';
 import { ShowMoreTicket } from './components/ShowMoreTicket/ShowMoreTicket';
 import { TicketList } from './components/TicketList/TicketList';
 import { Loader } from './components/loader/loader';
 import { useDispatch } from 'react-redux';
 import { getSessionID, getTickets } from './redux/action-creators/fetchTickets';
 import { useTypeSelector } from './hooks/useTypeSelector';
+
 export const App: React.FC = () => {
   const dispatch = useDispatch()
-  const {sessionId, loading, buttonMoreTickets} = useTypeSelector(state => state.fetch)
+  const {sessionId, loading } = useTypeSelector(state => state.fetch)
+  const {buttonMoreTickets, showAlertModal} = useTypeSelector(state => state.ui)
 
 
   useEffect(() => {
@@ -25,6 +28,7 @@ export const App: React.FC = () => {
       dispatch(getTickets(sessionId)as any)
     }
   }, [sessionId])
+
   return (
       <ChakraWrapper>
       <div className={style.appWrapper}>
@@ -36,10 +40,17 @@ export const App: React.FC = () => {
         <div className={style.contentWrapper}>
           <FilterCheckboxGroup />
           <div className={style.contentTicketsButtonsWrapper}>
-            <FilterButtonGroup />
+            <SortButtonGroup />
+            {showAlertModal ? (
+            <Alert>
+              <AlertIcon />
+              <AlertTitle>:(</AlertTitle>
+              <AlertDescription>Не удалось найти билет, выберите параметры поиска</AlertDescription>
+            </Alert>
+                  ) : null}
             {loading ? <Loader /> : null}
             <TicketList />
-            {buttonMoreTickets? <ShowMoreTicket /> : null}
+            {buttonMoreTickets ? <ShowMoreTicket /> : null}
           </div>
         </div>
       </div>

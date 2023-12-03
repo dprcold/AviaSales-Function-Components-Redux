@@ -1,12 +1,14 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { v4 as uuidv4 } from 'uuid';
-import s7Logo from '../assets/S7 Logo.png';
 import { addMinutes } from 'date-fns';
 
 import style from './TicketList.module.scss';
 import { useTypeSelector } from '../../hooks/useTypeSelector';
 
 import { Ticket } from '../../types/types'
+import { useDispatch } from 'react-redux';
+import { ActionTypes } from '../../redux/actions/actions';
+
 
 const formatDuration = (duration: number): string => {
   const hours = Math.floor(duration / 60)
@@ -27,15 +29,54 @@ const formatStopsWord = (stopsCount: number): string => {
 
 
 export const TicketList: React.FC = () => {
+  const [filteredTickets, setFilteredTickets] = useState<Ticket[]>([])
+  const { footerButtonCount, checkboxAll, checkboxNoTransfers, checkboxOneTransfers, checkboxTwoTransfers, checkboxThreeTransfers } = useTypeSelector(state => state.ui)
+  const { tickets } = useTypeSelector(state => state.fetch);
+  const dispatch = useDispatch()
+
+  useEffect(() => {
+    if (tickets) {
+     
+      const filtered = tickets.filter((ticket:any) => {
+        
+        const stopsCount = ticket.segments.reduce((acc:number, segment:any) => acc + segment.stops.length, 0);
   
-  const { footerButtonCount } = useTypeSelector(state => state.ui)
-  console.log(footerButtonCount)
-  const { tickets } = useTypeSelector(state => state.fetch)
-  console.log( tickets)
+        return (
+          (checkboxAll || (!checkboxAll && checkboxNoTransfers && stopsCount === 0) ||
+          (!checkboxAll && checkboxOneTransfers && stopsCount === 1) ||
+          (!checkboxAll && checkboxTwoTransfers && stopsCount === 2) ||
+          (!checkboxAll && checkboxThreeTransfers && stopsCount === 3))
+        );
+      });
+  
+      setFilteredTickets(filtered);
+    }
+    
+
+  }, [tickets, checkboxAll, checkboxNoTransfers, checkboxOneTransfers, checkboxTwoTransfers, checkboxThreeTransfers]);
+ 
+  useEffect(() => {
+    if (filteredTickets && filteredTickets.length > 5) {
+      dispatch({ type: ActionTypes.SHOW_MORE_TICKETS_BUTTON });
+    } else {
+      dispatch({ type: ActionTypes.HIDE_MORE_TICKETS_BUTTON });
+    }
+  }, [filteredTickets]);
+  useEffect(() => {
+    if(filteredTickets && !filteredTickets.length && !checkboxAll){
+      dispatch({ type: ActionTypes.SHOW_ALERT_MODAL });
+    } else {
+      dispatch({ type: ActionTypes.HIDE_ALERT_MODAL });
+    }
+  },[filteredTickets])
+  
+  
+
+
   return (
     <>
-      {tickets
-        ? tickets.slice(0,footerButtonCount).map((item: Ticket) => (
+      {filteredTickets
+        ? filteredTickets.slice(0,footerButtonCount).map((item: Ticket) => (
             <div className={style.ticketContainer} key={uuidv4()}>
               <div className={style.priceLogoWrapper}>
                 <span className={style.price}>{item.price.toLocaleString('ru-Ru')} р</span>
@@ -65,8 +106,6 @@ export const TicketList: React.FC = () => {
                   {`${new Date(item.segments[1].date).toLocaleTimeString('ru-RU', {hour: '2-digit', minute:'2-digit'})} – 
                   ${addMinutes(new Date(item.segments[1].date), item.segments[1].duration).toLocaleTimeString('ru-RU', {hour: '2-digit', minute:'2-digit'})}`}
                 </span>
-
-                   
                 </div>
                 <div className={style.timeInfo}>
                   <span className={style.duration}>В пути</span>

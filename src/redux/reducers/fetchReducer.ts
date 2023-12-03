@@ -5,7 +5,6 @@ interface ticketState {
     tickets: any[];
     loading: boolean;
     error: null | string;
-    buttonMoreTickets: boolean;
 }
 
 const initialState = {
@@ -13,7 +12,6 @@ const initialState = {
     tickets: [],
     loading: false,
     error: null,
-    buttonMoreTickets: false,
 }
 
 export const fetchReducer = (state: ticketState = initialState, action: any) => {
@@ -34,7 +32,6 @@ export const fetchReducer = (state: ticketState = initialState, action: any) => 
           loading: false,
           tickets: action.payload,
           error: null,
-          buttonMoreTickets: true,
         };
       case fetchAtcionTypes.FETCH_TICKETS_ERROR:
         return {
