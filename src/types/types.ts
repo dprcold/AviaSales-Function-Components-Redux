@@ -22,7 +22,7 @@ export interface ticketState {
   error: null | string;
   showErrorModal: boolean;
 }
-export interface Ticket {
+export interface ticketType {
   // Цена в рублях
   price: number;
   // Код авиакомпании (iata)
@@ -55,4 +55,9 @@ export interface Ticket {
       duration: number;
     },
   ];
+}
+export interface TicketProps {
+  price: number;
+  segments: ticketType['segments'];
+  carrier: string;
 }

@@ -1,10 +1,10 @@
 import React, { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
 
 import customCheckBox from '../../assets/Checkbox.png';
 import checkedCustomCheckBox from '../../assets/CheckboxChecked.png';
 import { ActionTypes } from '../../redux/actions/actions';
 import { useTypeSelector } from '../../hooks/useTypeSelector';
+import { useAppDispatch } from '../../hooks/useAppDispatch';
 
 import style from './FilterCheckboxGroup.module.scss';
 
@@ -18,7 +18,7 @@ enum CheckboxIds {
 
 export const FilterCheckboxGroup: React.FC = () => {
   const uiState = useTypeSelector((state) => state.ui);
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
   const checkboxes = [
     { id: CheckboxIds.All, title: 'Все', state: uiState.checkboxAll },
     { id: CheckboxIds.NoTransfers, title: 'Без пересадок', state: uiState.checkboxNoTransfers },

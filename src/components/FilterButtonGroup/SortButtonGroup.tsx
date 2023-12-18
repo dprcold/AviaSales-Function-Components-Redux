@@ -1,14 +1,15 @@
 import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
 
 import { useTypeSelector } from '../../hooks/useTypeSelector';
 import { ActionTypes } from '../../redux/actions/actions';
+import { useAppDispatch } from '../../hooks/useAppDispatch';
 
 import styles from './SortButtonGroup.module.scss';
+
 export const SortButtonGroup: React.FC = () => {
   const [selectedButton, setSelectedButton] = useState<number>();
   const uiState = useTypeSelector((state) => state.ui);
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
   const buttons = [
     { id: 1, name: 'Самый дешевый', state: uiState.sortButtonCheap },
     { id: 2, name: 'Самый быстрый', state: uiState.sortButtonFastest },

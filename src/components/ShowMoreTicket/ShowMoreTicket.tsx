@@ -1,14 +1,14 @@
 import React from 'react';
-import { useDispatch } from 'react-redux';
 
 import { ActionTypes } from '../../redux/actions/actions';
+import { useAppDispatch } from '../../hooks/useAppDispatch';
 
 import style from './ShowMoreTicket.module.scss';
 
 export const ShowMoreTicket: React.FC = () => {
-  const discpatch = useDispatch();
+  const dispatch = useAppDispatch();
   const onButtonClick: React.MouseEventHandler<HTMLDivElement> = () => {
-    discpatch({ type: ActionTypes.COUNTER_FOOTER_BUTTON });
+    dispatch({ type: ActionTypes.COUNTER_FOOTER_BUTTON });
   };
 
   return (

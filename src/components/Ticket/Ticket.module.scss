@@ -12,6 +12,11 @@
     padding: 20px;
     margin-bottom: 20px;
 }
+.priceLogoWrapper{
+    display: grid;
+    grid-template-columns: 1fr .5fr;
+    margin-bottom: 8px;
+}
 .price{
     color: #2196F3;
     font-family: Open Sans;
@@ -19,13 +24,6 @@
     font-style: normal;
     font-weight: 600;
     line-height: 24px;
-}
-.priceLogoWrapper{
-    display: grid;
-    grid-template-columns: 1fr .5fr;
-    margin-bottom: 8px;
-
-
 }
 .logo{
     margin-top: -6px;
@@ -78,4 +76,7 @@
     line-height: 18px; /* 150% */
     letter-spacing: 0.5px;
     text-transform: uppercase;
+}
+.isNextDayDateColor{
+    color: #2196F3;
 }

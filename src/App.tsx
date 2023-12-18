@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { Alert, AlertIcon, AlertDescription } from '@chakra-ui/react';
-import { useDispatch } from 'react-redux';
 
+import { useAppDispatch } from './hooks/useAppDispatch';
 import Logo from './assets/Logo.png';
 import { ChakraWrapper } from './ChakraWrapper';
 import { FilterCheckboxGroup } from './components/FilterCheckboxGroup/FilterCheckboxGroup';
@@ -14,18 +14,16 @@ import { getSessionID, getTickets } from './redux/action-creators/fetchTickets';
 import { useTypeSelector } from './hooks/useTypeSelector';
 
 export const App: React.FC = () => {
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
   const { sessionId, loading, showErrorModal } = useTypeSelector((state) => state.fetch);
   const { buttonMoreTickets, showAlertModal } = useTypeSelector((state) => state.ui);
 
   useEffect(() => {
     dispatch(getSessionID() as any);
-    console.log('айди получено');
   }, []);
   useEffect(() => {
     if (sessionId) {
       dispatch(getTickets(sessionId) as any);
-      console.log('билеты получены');
     }
   }, [sessionId]);
 
