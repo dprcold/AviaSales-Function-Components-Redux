@@ -24,7 +24,7 @@ const formatStopsWord = (stopsCount: number): string => {
 const isNextDayDate = (dateLeft: Date, dateRight: Date): string | undefined => {
   const daysDifference = dateRight.getDate() - dateLeft.getDate();
   if (daysDifference) {
-    return ` +${daysDifference}`;
+    return ' +1';
   }
 };
 
