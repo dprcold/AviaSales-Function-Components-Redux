@@ -1,5 +1,5 @@
 import React from 'react';
-import { addMinutes } from 'date-fns';
+import { addMinutes, format, isLastDayOfMonth, getDate, getMonth } from 'date-fns';
 
 import { TicketProps } from '../../types/types';
 
@@ -23,9 +23,22 @@ const formatStopsWord = (stopsCount: number): string => {
 };
 const isNextDayDate = (dateLeft: Date, dateRight: Date): string | undefined => {
   const daysDifference = dateRight.getDate() - dateLeft.getDate();
-  if (daysDifference) {
-    return ' +1';
+  if (isLastDayOfMonth(dateLeft) && dateLeft.getMonth() !== dateRight.getMonth()) {
+    const firstDate = getDate(new Date(dateLeft));
+    const secondDate = getDate(new Date(dateRight));
+    const daysDifferenceLastMonth = firstDate + secondDate - firstDate;
+    return ` +${daysDifferenceLastMonth}`;
   }
+  if (daysDifference) {
+    return ` +${daysDifference}`;
+  }
+};
+const formatDate = (date: string): string => {
+  return format(new Date(date), 'HH:mm');
+};
+const formatDateAddMinutes = (date: string, duration: number): string => {
+  const addMin = addMinutes(new Date(date), duration);
+  return format(new Date(addMin), 'HH:mm');
 };
 
 export const Ticket: React.FC<TicketProps> = ({ price, segments, carrier }) => {
@@ -41,14 +54,8 @@ export const Ticket: React.FC<TicketProps> = ({ price, segments, carrier }) => {
             {segments[0].origin} – {segments[0].destination}
           </span>
           <span className={style.flightTime}>
-            {`${new Date(segments[0].date).toLocaleTimeString('ru-RU', {
-              hour: '2-digit',
-              minute: '2-digit',
-            })} – 
-            ${addMinutes(new Date(segments[0].date), segments[0].duration).toLocaleTimeString('ru-RU', {
-              hour: '2-digit',
-              minute: '2-digit',
-            })}`}
+            {`${formatDate(segments[0].date)} – 
+            ${formatDateAddMinutes(segments[0].date, segments[0].duration)}`}
             <span className={style.isNextDayDateColor}>
               {isNextDayDate(new Date(segments[0].date), addMinutes(new Date(segments[0].date), segments[0].duration))}
             </span>
@@ -69,14 +76,8 @@ export const Ticket: React.FC<TicketProps> = ({ price, segments, carrier }) => {
             {segments[1].origin} – {segments[1].destination}
           </span>
           <span className={style.flightTime}>
-            {`${new Date(segments[1].date).toLocaleTimeString('ru-RU', {
-              hour: '2-digit',
-              minute: '2-digit',
-            })} – 
-            ${addMinutes(new Date(segments[1].date), segments[1].duration).toLocaleTimeString('ru-RU', {
-              hour: '2-digit',
-              minute: '2-digit',
-            })}`}
+            {`${formatDate(segments[1].date)} – 
+            ${formatDateAddMinutes(segments[1].date, segments[1].duration)}`}
             <span className={style.isNextDayDateColor}>
               {isNextDayDate(new Date(segments[1].date), addMinutes(new Date(segments[1].date), segments[1].duration))}
             </span>
